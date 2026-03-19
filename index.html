@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>THE CBSE CORE | Official Rules</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent-red: #e63946;
+            --accent-blue: #0077b6;
+            --discord-blurple: #5865F2;
+            --dark-bg: #0b0d11;
+            --card-bg: #161a21;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --white: #ffffff;
+            --border: #2c323d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Banner & Profile Section */
+        .server-banner {
+            width: 100%;
+            height: 250px;
+            background: url('corebanner.jpg') no-repeat center center;
+            background-size: cover;
+            border-bottom: 4px solid var(--accent-red);
+        }
+
+        .header-content {
+            text-align: center;
+            margin-top: -60px; /* Pulls logo up over banner */
+            padding: 0 20px 40px;
+        }
+
+        .server-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--dark-bg);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin: 15px 0 5px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        /* Buttons */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-discord {
+            text-decoration: none;
+            background-color: var(--discord-blurple);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-discord:hover { background-color: #4752c4; transform: scale(1.05); }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Rule Cards */
+        .rule-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--accent-blue);
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .ban-zone { border-left-color: var(--accent-red); }
+
+        .rule-title {
+            font-weight: 800;
+            color: var(--white);
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .highlight-red { color: var(--accent-red); font-weight: bold; }
+
+        /* Tutorial Section */
+        .tutorial-box {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .tutorial-gif {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .bot-info {
+            background: rgba(230, 57, 70, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--accent-red);
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="server-banner"></div>
+
+    <header class="header-content">
+        <img src="ehre.gif" alt="Server Logo" class="server-logo">
+        <div class="hero">
+            <h1>THE CBSE CORE</h1>
+            <div class="cta-container">
+                <a href="https://discord.gg/EGmHRzUBQA" target="_blank" class="btn-discord">Join Official Server</a>
+            </div>
+        </div>
+    </header>
+
+<div class="container">
+
+        <!-- INSTANT BAN ZONE -->
+        <h2 class="section-header"><span style="color:var(--accent-red)">🚨</span> THE "INSTANT BAN" ZONE</h2>
+        <div class="grid">
+            <div class="rule-card ban-zone">
+                <span class="rule-title">1. RESPECT WOMEN (OUR MAIN RULE)</span>
+                <span class="rule-desc">Any disrespect, harassment, or abuse toward female members is an <span class="highlight-red">INSTANT PERMANENT BAN</span>. No warnings, no appeals.</span>
+            </div>
+            <div class="rule-card ban-zone">
+                <span class="rule-title">2. NO SELF-PROMOTION / DM ADVERTISING</span>
+                <span class="rule-desc">Advertising YouTube, Discord servers, or other platforms results in an Instant Ban. This includes unsolicited DMs to server members.</span>
+            </div>
+            <div class="rule-card ban-zone">
+                <span class="rule-title">3. NO SIMPING / FLIRTING</span>
+                <span class="rule-desc">This is for growth, not dating. Any form of simping or making members uncomfortable will result in an immediate permanent ban.</span>
+            </div>
+            <div class="rule-card ban-zone">
+                <span class="rule-title">4. ALT ACCOUNTS & LOYALTY</span>
+                <span class="rule-desc">One person, one account. All alts and main will be banned. We do not tolerate "snakes"—if you have an issue, tell staff or leave.</span>
+            </div>
+            <div class="rule-card ban-zone">
+                <span class="rule-title">5. THE 5-STRIKE & ACCOMPLICE POLICY</span>
+                <span class="rule-desc">5 Warnings = Instant Ban. If you lie for or cover for a rule-breaker, you receive the <span class="highlight-red">exact same punishment</span> as them.</span>
+            </div>
+        </div>
+
+        <!-- STUDY ETIQUETTE -->
+        <h2 class="section-header"><span style="color:var(--accent-blue)">📚</span> STUDY & VC ETIQUETTE</h2>
+        <div class="grid">
+            <div class="rule-card study-zone">
+                <span class="rule-title">STAY PRODUCTIVE</span>
+                <span class="rule-desc">Move to Chill Convo VCs if not studying. Idlers in focus areas will be moved by staff. The study environment is sacred.</span>
+            </div>
+            <div class="rule-card study-zone">
+                <span class="rule-title">RESOURCE PROTECTION</span>
+                <span class="rule-desc">Do not steal or copy our curated resources to other servers. This is theft of community effort and will be prosecuted.</span>
+            </div>
+            <div class="rule-card study-zone">
+                <span class="rule-title">CAM ONLY VC</span>
+                <span class="rule-desc">Do not join Cam VCs without a camera. Trollers will receive a Temporary Ban.</span>
+            </div>
+            <div class="rule-card study-zone">
+                <span class="rule-title">DOUBT HELPERS</span>
+                <span class="rule-desc">Use specific channels. Do not interrupt active study/help sessions in VC. Noise and jokes are prohibited in focus zones.</span>
+            </div>
+        </div>
+
+        <!-- CHAT & CONDUCT -->
+        <h2 class="section-header"><span style="color:#ffb703">💬</span> CHAT & CONDUCT</h2>
+        <div class="grid">
+            <div class="rule-card chat-zone">
+                <span class="rule-title">FREEDOM OF SPEECH LIMITS</span>
+                <span class="rule-desc">Friendly arguments are fine, BUT this never applies to <span class="highlight-red">Women, Religion, Politics, or Racism</span>.</span>
+            </div>
+            <div class="rule-card chat-zone">
+                <span class="rule-title">NUDITY / NSFW / SPAM</span>
+                <span class="rule-desc">Nudity = 1-Day Timeout + Warning. No walls of text, emoji spam, or unnecessary @everyone tags.</span>
+            </div>
+            <div class="rule-card chat-zone">
+                <span class="rule-title">HELPER ETIQUETTE</span>
+                <span class="rule-desc">Respect Helpers' time. Do not ping for "stupid reasons" or non-academic issues. They are not your personal search engine.</span>
+            </div>
+        </div>
+
+        <!-- TICKETS & SUPPORT -->
+        <h2 class="section-header"><span style="color:#8ecae6">🎫</span> TICKETS & SUPPORT</h2>
+        <div class="grid">
+            <div class="rule-card support-zone">
+                <span class="rule-title">REPORTING & TICKETS</span>
+                <span class="rule-desc">DM the Server Bot or Create a Ticket for issues. Provide evidence (audio/screenshot). Troll tickets result in a Warning.</span>
+            </div>
+            <div class="rule-card support-zone">
+                <span class="rule-title">STAFF DISCRETION</span>
+                <span class="rule-desc">If a Moderator tells you to change the topic, do it immediately. <span class="highlight-red">Their word is final.</span></span>
+            </div>
+        </div>
+
+        <div class="tutorial-box">
+            <span class="rule-title">How to report a message</span>
+            <img src="report.gif" alt="How to report" class="tutorial-gif">
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 THE CBSE CORE. Staff discretion is final.</p>
+    </footer>
+
+</body>
+</html>
