@@ -270,6 +270,78 @@
     transform: translateX(5px);
 }
 
+.team-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    width: 220px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.team-card:hover {
+    border-color: var(--accent-red);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+}
+
+.team-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-red);
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.team-info h4 { margin: 0; color: #fff; font-size: 1.2rem; letter-spacing: 0.5px; }
+.team-info span { color: var(--accent-red); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+.staff-mini-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.staff-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1a1e26;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: 0.2s;
+}
+
+.staff-chip:hover {
+    background: #252a33;
+    transform: scale(1.05);
+}
+
+.staff-chip img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.staff-chip span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.staff-chip small {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+}
+        
     </style>
 </head>
 <body>
@@ -327,6 +399,64 @@
             </p>
         </div>
     </div>
+<h2 class="section-header" style="justify-content: center; margin-top: 60px; border: none;">👑 THE ADMINISTRATION</h2>
+    <div class="team-grid" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px;">
+        
+        <div class="team-card">
+            <img src="https://media.discordapp.net/attachments/1468672359333629962/1484492184915939461/6a5f50bd5f711481484773b5d0c02900_-_Copy.gif?ex=69be6c95&is=69bd1b15&hm=a993aa453e31686ec928744171948adf2b868d10f284994a1ac6667795d7e948&=" alt="NotLaksh_">
+            <div class="team-info">
+                <h4>NotLaksh_</h4>
+                <span>Founder</span>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <img src="https://images-ext-1.discordapp.net/external/7QRQ9IYY0OfxnMi6wjYWwzijnBJkaAqLKwopgWlfTq0/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/887567747066789888/2d806a271142ebb02d9192d2031105a7.png?format=webp&quality=lossless" alt="OKBYE">
+            <div class="team-info">
+                <h4>OKBYE</h4>
+                <span>Co-Founder</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2 class="section-header" style="justify-content: center; border: none; font-size: 1.5rem;">📊 MANAGEMENT</h2>
+        <div class="staff-mini-grid">
+            <div class="staff-chip" style="border-color: #00f5d4;">
+                <img src="https://images-ext-1.discordapp.net/external/aT3EiQ7oKzj0l6gznHloS-Vb0eo6LKOF0Is8XHrykNg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1238173546761420873/a8dd690d246dd17073a0f5be39669ce4.png?format=webp&quality=lossless">
+                <div>
+                    <span style="display:block;">Sparkle🌪</span>
+                    <small style="color:#00f5d4; font-size: 0.6rem; text-transform: uppercase;">Manager</small>
+                </div>
+            </div>
+            <div class="staff-chip" style="border-color: #9b5de5;">
+                <img src="https://images-ext-1.discordapp.net/external/t7FaIqvmYaaojbUgBbop52hNINeZhr-DRFnJNrGspeI/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/755751295440388107/11f0d304059a0f542af297a571dc2689.png?format=webp&quality=lossless">
+                <div>
+                    <span style="display:block;">Someone☠</span>
+                    <small style="color:#9b5de5; font-size: 0.6rem; text-transform: uppercase;">Jr. Admin</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <h2 class="section-header" style="justify-content: center; border: none; font-size: 1.2rem; color: var(--text-dim);">🛡️ SUPPORT SQUAD</h2>
+        <div class="staff-mini-grid">
+            <div class="staff-chip">
+                <img src="https://images-ext-1.discordapp.net/external/SPOo4lZk-BtRKHfV_j5hzJIq5kujbkx7BQ6YoPaVZgQ/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/847055747720544276/b1b615149d2c821327a492365dea980a.png?format=webp&quality=lossless">
+                <span>R.o.x.x.x.s <small>(Jr. Mod)</small></span>
+            </div>
+            <div class="staff-chip">
+                <img src="https://images-ext-1.discordapp.net/external/7sBs1q84frrU3Cz1XF3zOgi-hZg06Ff58TS0mISZK04/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1394245880550264875/c571e3e2670b00f41e8d3432e3536653.png?format=webp&quality=lossless">
+                <span>Tanmay <small>(Jr. Mod)</small></span>
+            </div>
+            <div class="staff-chip">
+                <img src="https://images-ext-1.discordapp.net/external/kvEYJctBeGwzo5MjlwG2K6xuJ5q8obheh7NvrRIf9Mo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1172754397281918976/8898df62fbea236496e8c73ab5ad14c6.png?format=webp&quality=lossless">
+                <span>Lester07 <small>(Helper)</small></span>
+            </div>
+        </div>
+    </div>
+    
 </section>
 
     <!-- SECTION: RULES -->
