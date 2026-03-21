@@ -377,72 +377,11 @@
 .empty-slot {
     opacity: 0.7;
 }        
-/* Clean Tutorial Section Styling */
-#tutorials .tutorial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.tut-card {
-    background: linear-gradient(145deg, #161a21, #0b0d11);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-}
-
-.tut-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-red);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-}
-
-.tut-card img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: 0.3s;
-}
-
-.tut-card:hover img {
-    opacity: 1;
-}
-
-.tut-tag {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 10px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    border: 1px solid rgba(255,255,255,0.1);
-    z-index: 5;
-}
-
-.tut-info {
-    padding: 20px;
-}
-
-.tut-info h4 {
-    margin: 0 0 8px 0;
-    color: #fff;
-    font-size: 1.1rem;
-}
-
-.tut-info p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    line-height: 1.5;
-}        
+.tutorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+.tut-card { background: linear-gradient(145deg, #161a21, #0b0d11); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: 0.3s; position: relative; text-align: left; }
+.tut-card:hover { transform: translateY(-8px); border-color: var(--accent-red) !important; }
+.tut-card img { width: 100%; height: 160px; object-fit: cover; opacity: 0.8; }
+.tut-tag { position: absolute; top: 15px; right: 15px; background: rgba(0, 0, 0, 0.7); padding: 4px 12px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--border); z-index: 5; }     
     </style>
 </head>
 <body>
@@ -731,55 +670,29 @@
     </div>
 </section>
 
-<!-- SECTION: TUTORIALS -->
 <section id="tutorials" class="page-section" style="display: none;">
     <div class="dashboard-container" style="max-width: 1000px; margin: 0 auto; text-align: center;">
-        
-        <h2 class="section-header" style="justify-content: center; border: none; font-size: 2.5rem;">
-            <span style="color: var(--accent-red)">🚀</span> QUICK TUTORIALS
-        </h2>
-        <p style="color: var(--text-dim); margin-bottom: 40px;">Visual guides to help you navigate the CBSE CORE ecosystem.</p>
-
+        <h2 class="section-header" style="justify-content: center; border: none; font-size: 2.5rem;"><span style="color: var(--accent-red)">🚀</span> QUICK TUTORIALS</h2>
         <div class="tutorial-grid">
-            
-            <!-- Resource Card -->
             <div class="tut-card">
-                <div class="tut-tag" style="border-color: #00f5d4; color: #00f5d4;">LIBRARY</div>
-                <img src="resource.gif" alt="Resources">
-                <div class="tut-info">
-                    <h4>Find Study Materials</h4>
-                    <p>Search via channel categories to find Grade IX-XII notes and JEE/NEET modules.</p>
-                </div>
+                <div class="tut-tag" style="color: #00f5d4;">RESOURCES</div>
+                <img src="resource.gif">
+                <div class="tut-info"><h4>Find Study Materials</h4><p>Search via channel categories to find Grade IX-XII notes.</p></div>
             </div>
-
-            <!-- Roles Card -->
             <div class="tut-card">
-                <div class="tut-tag" style="border-color: #9b5de5; color: #9b5de5;">PROFILE</div>
-                <img src="roles.gif" alt="Roles">
-                <div class="tut-info">
-                    <h4>Claim Your Roles</h4>
-                    <p>Unlock subject channels by selecting your Grade and Stream in #self-roles.</p>
-                </div>
+                <div class="tut-tag" style="color: #9b5de5;">PROFILE</div>
+                <img src="roles.gif">
+                <div class="tut-info"><h4>Claim Your Roles</h4><p>Unlock subject channels by selecting your Grade in #self-roles.</p></div>
             </div>
-
-            <!-- Core Card -->
             <div class="tut-card">
-                <div class="tut-tag" style="border-color: #ffb703; color: #ffb703;">ECONOMY</div>
-                <img src="core.gif" alt="Economy">
-                <div class="tut-info">
-                    <h4>Master the Economy</h4>
-                    <p>Earn coins daily and spend them in the server shop for premium perks.</p>
-                </div>
+                <div class="tut-tag" style="color: #ffb703;">ECONOMY</div>
+                <img src="core.gif">
+                <div class="tut-info"><h4>Master Economy</h4><p>Earn coins daily and spend them in the server shop.</p></div>
             </div>
-
         </div>
-
-        <!-- Return Action -->
-        <div style="margin-top: 50px;">
-            <a onclick="showSection('main')" style="cursor: pointer; color: var(--text-dim); font-size: 0.9rem; text-decoration: underline;">← Back to Main Dashboard</a>
-        </div>
+        <div style="margin-top: 50px;"><a onclick="showSection('main')" style="cursor: pointer; color: var(--text-dim); text-decoration: underline;">← Back to Main Dashboard</a></div>
     </div>
-</section>    
+</section>   
 
 <!-- SECTION: BOT COMMANDS -->
 <section id="bot" class="page-section">
@@ -1048,7 +961,24 @@ async function updateServerStats() {
         vcListDiv.innerHTML = `<p style="color: var(--accent-red); font-size: 0.8rem;">Widget not responding. Check Discord settings.</p>`;
     }
 }
+    
+function showSection(sectionId) {
+    // Hide ALL sections (both page-section and content-section)
+    document.querySelectorAll('.page-section, section').forEach(sec => {
+        sec.style.display = 'none';
+    });
 
+    // Show the target section
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.style.display = 'block';
+    }
+
+    // Update Nav Active State
+    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+    if (event && event.currentTarget) { event.currentTarget.classList.add('active'); }
+}
+    
 updateServerStats();
 setInterval(updateServerStats, 30000);
 </script>
