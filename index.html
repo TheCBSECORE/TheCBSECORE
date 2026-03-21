@@ -470,7 +470,109 @@
     font-size: 0.85rem;
     line-height: 1.4;
 }        
+.pomo-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    height: 70vh;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border);
+}
+
+#pomo-video-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.6);
+}
+
+.pomo-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.pomo-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+
+.pomo-nav-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-dim);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pomo-nav-item.active {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
+}
+
+.timer-display {
+    font-size: 6.5rem;
+    font-weight: 900;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    margin: 10px 0;
+}
+
+.timer-display span { outline: none; border-bottom: 2px solid transparent; }
+.timer-display span:focus { border-bottom: 2px solid var(--accent-red); }
+
+.main-start-btn {
+    background: white;
+    color: black;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.main-start-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+
+.reset-icon {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: 15px;
+    vertical-align: middle;
+    transition: 0.3s;
+}
+.reset-icon:hover { color: white; transform: rotate(180deg); }
+
+
     </style>
+
+<audio id="pomo-bg-music" loop>
+    <source src="minecraft.mp3" type="audio/mpeg">
+</audio>
+    
 </head>
 <body>
 
@@ -483,6 +585,7 @@
         <li><a onclick="showSection('bot')">Bot</a></li>
         <li><a onclick="showSection('faq')">FAQ</a></li>
         <li><a onclick="showSection('socials')">Socials</a></li>
+        <li><a onclick="showSection('pomodoro')">Pomodoro</a></li>
     </ul>
 </nav>
 
@@ -693,6 +796,35 @@ CBSE CORE is where discipline meets enjoyment. Join us and stop prepping alone.
     
 </section>
 
+<section id="pomodoro" class="page-section" style="display: none; padding-top: 100px;">
+    <div class="pomo-wrapper">
+        <video autoplay muted loop id="pomo-video-bg">
+            <source src="knight.mp4" type="video/mp4">
+        </video>
+
+        <div class="pomo-container">
+            <div class="pomo-nav">
+                <button class="pomo-nav-item active" onclick="setMode('focus', 25, this)">Focus</button>
+                <button class="pomo-nav-item" onclick="setMode('short', 5, this)">Short Break</button>
+                <button class="pomo-nav-item" onclick="setMode('long', 15, this)">Long Break</button>
+            </div>
+
+            <div class="timer-display">
+                <span id="minutes" contenteditable="true">25</span>:<span id="seconds" contenteditable="true">00</span>
+            </div>
+
+            <div class="action-btns">
+                <button onclick="toggleTimer()" id="start-btn" class="main-start-btn">START</button>
+                <button onclick="resetTimer()" class="reset-icon" title="Reset Timer">↻</button>
+            </div>
+
+            <p style="font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 20px;">
+                Tip: Click the numbers to manually edit time
+            </p>
+        </div>
+    </div>
+</section>
+    
     <!-- SECTION: RULES -->
     <section id="rules" class="page-section">
         <div class="container">
@@ -1176,5 +1308,99 @@ updateServerStats();
 setInterval(updateServerStats, 30000);
 </script>
 
+<script>
+let timer;
+let timeLeft = 1500; // Default 25 mins
+let isRunning = false;
+let currentMode = 'focus';
+
+function updateDisplay() {
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    document.getElementById('minutes').innerText = mins < 10 ? '0' + mins : mins;
+    document.getElementById('seconds').innerText = secs < 10 ? '0' + secs : secs;
+}
+
+function toggleTimer() {
+    const startBtn = document.getElementById('start-btn');
+    const alarmSound = document.getElementById('pomo-bg-music'); // Using your minecraft.mp3 as the alarm
+    
+    if (isRunning) {
+        // --- PAUSE STATE ---
+        clearInterval(timer);
+        startBtn.innerText = 'START';
+        isRunning = false;
+    } else {
+        // --- START STATE ---
+        clearInterval(timer); // Safety clear
+
+        const m = parseInt(document.getElementById('minutes').innerText) || 0;
+        const s = parseInt(document.getElementById('seconds').innerText) || 0;
+        timeLeft = (m * 60) + s;
+
+        if (timeLeft <= 0) return;
+
+        isRunning = true;
+        startBtn.innerText = 'PAUSE';
+        
+        timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateDisplay();
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                isRunning = false;
+                startBtn.innerText = 'START';
+                
+                // --- THE ALARM TRIGGERS HERE ONLY ---
+                alarmSound.volume = 0.5; // Set to 50% volume so it's clear
+                alarmSound.currentTime = 0; 
+                alarmSound.play().catch(e => console.log("Audio play failed: ", e));
+                
+                // Visual feedback (Optional: Makes the timer glow red/green)
+                document.querySelector('.pomo-container').style.borderColor = "var(--accent-red)";
+                
+                setTimeout(() => {
+                    alert("🔔 Time's up! Achievement Unlocked.");
+                    alarmSound.pause(); // Stops the sound after you click OK
+                }, 500);
+            }
+        }, 1000);
+    }
+}
+
+function setMode(mode, mins, btn) {
+    clearInterval(timer);
+    isRunning = false;
+    currentMode = mode;
+    timeLeft = mins * 60;
+    
+    // UI Updates
+    document.getElementById('start-btn').innerText = 'START';
+    document.querySelectorAll('.pomo-nav-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    updateDisplay();
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    isRunning = false;
+    document.getElementById('pomo-bg-music').pause(); // Stops the music
+    document.getElementById('pomo-bg-music').currentTime = 0; // Rewinds to start
+    document.getElementById('start-btn').innerText = 'START';
+    
+    // Reset based on mode
+    if(currentMode === 'focus') timeLeft = 1500;
+    else if(currentMode === 'short') timeLeft = 300;
+    else timeLeft = 900;
+    
+    updateDisplay();
+}
+
+</script>
+    
 </body>
 </html>
