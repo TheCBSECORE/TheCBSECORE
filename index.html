@@ -709,6 +709,110 @@
     border: none;
     display: block;
     border-radius: 10px;
+}   
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Massive Spreading Glow */
+.glow-bg {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 0.8; }
+}
+
+.intro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Circular Logo with Bright Border */
+.circular-logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--core-blue);
+    box-shadow: 0 0 30px var(--core-blue), inset 0 0 15px var(--core-blue);
+    margin-bottom: 20px;
+}
+
+.brand-name {
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin: 10px 0;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Loading Bar Alignment */
+.loading-section {
+    width: 280px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 40%; /* Adjust or animate via JS */
+    background: var(--core-blue);
+    box-shadow: 0 0 15px var(--core-blue);
+    border-radius: 10px;
+}
+
+.status-text {
+    font-size: 9px;
+    color: #888;
+    letter-spacing: 2px;
+    margin-top: 12px;
+}
+
+/* Big Comets */
+.comet {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, var(--core-blue) 100%);
+    width: 150px; /* Longer tails for the "big" look */
+    filter: drop-shadow(0 0 5px var(--core-blue));
+    opacity: 0;
+}
+
+.comet::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to left, white, transparent);
 }        
     </style>
 
@@ -740,6 +844,24 @@
     </ul>
 </nav>
 
+<div id="intro-overlay">
+    <div id="comet-container"></div>
+    <div class="glow-bg"></div>
+    
+    <div class="intro-content">
+        <div class="logo-wrapper">
+            <img src="core.png" alt="Core Logo" class="circular-logo">
+        </div>
+        <h1 class="brand-name">THE CBSE CORE</h1>
+        <div class="loading-section">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="status-text">ENTERING THE CORE...</p>
+        </div>
+    </div>
+</div>
+    
 <!-- SECTION: MAIN / ABOUT -->
 <section id="main" class="page-section active">
     <div class="server-banner"></div>
@@ -1593,6 +1715,67 @@ function resetTimer() {
 
 </script>
 
+<script>
+// 1. Function to handle the Loading Bar
+function startLoading() {
+    const fill = document.querySelector('.progress-fill');
+    const intro = document.getElementById('intro-overlay'); // Make sure your main div has this ID
+    let width = 0;
+    
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            
+            // 1. Add a fade-out class or style
+            intro.style.transition = "opacity 1s ease-out, visibility 1s";
+            intro.style.opacity = "0";
+            intro.style.visibility = "hidden";
+
+            // 2. Completely remove it from the DOM after it fades
+            setTimeout(() => {
+                intro.remove(); 
+            }, 1000);
+
+        } else {
+            // Adjust speed here: Higher number = faster load
+            width += Math.random() * 1.5; 
+            if(width > 100) width = 100;
+            fill.style.width = width + '%';
+        }
+    }, 40); // Controls how smooth the bar moves
+}
+
+// 2. Function for the Sideways/Drifting Comets
+function spawnDriftingComet() {
+    const container = document.getElementById('comet-container');
+    const comet = document.createElement('div');
+    comet.className = 'comet';
+    
+    // Start from various points on the right/top to drift left/down
+    const startY = Math.random() * window.innerHeight;
+    const startX = window.innerWidth + 100;
+    
+    comet.style.top = startY + 'px';
+    comet.style.left = startX + 'px';
+    
+    container.appendChild(comet);
+
+    // Drifting animation: Moving across and slightly down
+    comet.animate([
+        { transform: 'translateX(0) translateY(0) rotate(-15deg)', opacity: 0 },
+        { transform: 'translateX(-400px) translateY(100px) rotate(-15deg)', opacity: 1, offset: 0.2 },
+        { transform: 'translateX(-1500px) translateY(400px) rotate(-15deg)', opacity: 0 }
+    ], {
+        duration: Math.random() * 1000 + 1000, // Fast zoom
+        easing: 'ease-in'
+    }).onfinish = () => comet.remove();
+}
+
+// Initialize
+startLoading();
+setInterval(spawnDriftingComet, 150); // Faster spawn rate for "starfield" feel
+</script>
+    
 <script>
   const slider = document.getElementById('member-slider');
   slider.innerHTML += slider.innerHTML;
