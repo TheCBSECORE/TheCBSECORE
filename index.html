@@ -563,6 +563,69 @@
     transition: 0.3s;
 }
 .reset-icon:hover { color: white; transform: rotate(180deg); }
+/* Position it far left and make it bigger */
+.nav-brand-transparent {
+    position: absolute;
+    left: 30px; /* Moves it to the very left */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    background: transparent; /* No background box */
+}
+
+/* Big Circular Logo */
+.nav-logo-lg {
+    width: 50px; /* Bigger size */
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Text Stacking (Like the LionBot image) */
+.brand-text-stack {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.brand-main-text {
+    color: white;
+    font-weight: 800;
+    font-size: 1.4rem; /* Big and bold */
+    letter-spacing: 0.5px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.brand-sub-text {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+/* --- THE GLOW EFFECT ON HOVER --- */
+.nav-brand-transparent:hover {
+    transform: scale(1.02);
+}
+
+.nav-brand-transparent:hover .brand-main-text {
+    color: var(--white);
+    /* Neon White/Blue Glow */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
+                 0 0 30px rgba(88, 101, 242, 0.4);
+}
+
+.nav-brand-transparent:hover .nav-logo-lg {
+    border-color: var(--discord-blurple);
+    /* Logo Outer Glow */
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+    filter: brightness(1.2);
+}        
 
 
     </style>
@@ -575,6 +638,14 @@
 <body>
 
     <nav>
+        
+    <a href="https://discord.gg/wgbz22sbPW" class="nav-brand-transparent" target="_blank">
+        <img src="Core.png" alt="Core Logo" class="nav-logo-lg">
+        <div class="brand-text-stack">
+            <span class="brand-main-text">THE CBSE CORE</span>
+        </div>
+    </a>
+        
     <ul class="nav-links">
         <li><a onclick="showSection('main')" id="nav-main" class="active">Main</a></li>
         <li><a onclick="showSection('rules')">Rules</a></li>
