@@ -710,55 +710,48 @@
     display: block;
     border-radius: 10px;
 }        
-/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    
-    /* 1. Fix the Trusted Bar */
-    .trusted-bar-container {
-        flex-direction: column; /* Stack text above the PFPs */
-        height: auto;
-        padding: 20px 10px;
-        width: 95%;
+    /* Stack Logo on top, Links on bottom */
+    nav {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 15px 0 !important;
+        align-items: center !important;
     }
 
-    .trusted-label {
-        margin-right: 0;
-        margin-bottom: 15px; /* Add space between text and sliding PFPs */
-        text-align: center;
-    }
-
-    /* 2. Fix the Moments/Compact Cards */
-    .moment-compact-card {
-        width: 98%;
-        padding: 15px;
-    }
-
-    .moment-img-container {
-        max-height: 200px; /* Make images shorter so they don't take the whole screen */
-    }
-
-    .glow-header {
-        font-size: 1.5rem; /* Shrink the glowing text so it doesn't wrap weirdly */
-        letter-spacing: 2px;
-    }
-
-    /* 3. Fix the Navigation */
-    .nav-links {
-        gap: 10px;
-        flex-wrap: wrap; /* Allows nav items to go to a second line if they don't fit */
+    /* Give branding its own space */
+    .nav-brand-transparent {
+        margin-bottom: 15px;
         justify-content: center;
     }
 
-    .nav-links li a {
-        font-size: 0.8rem;
-        padding: 5px 8px;
+    /* Fix the links so they don't overlap */
+    .nav-links {
+        display: flex !important;
+        flex-wrap: wrap !important; /* This pushes links to a 2nd line if they don't fit */
+        justify-content: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
     }
 
-    /* 4. Fix Pomodoro */
-    .timer-display {
-        font-size: 3.5rem; /* Smaller numbers for mobile */
+    .nav-links li {
+        margin: 0 !important;
     }
-}  
+
+    .nav-links li a {
+        font-size: 0.7rem !important; /* Smaller text for mobile */
+        padding: 5px 10px !important;
+        white-space: nowrap; /* Prevents text like 'Server Guide' from breaking */
+        background: rgba(255, 255, 255, 0.05); /* Adds a button-like feel */
+        border-radius: 4px;
+    }
+
+    /* Hide sub-text to save space */
+    .brand-sub-text {
+        display: none;
+    }
+}
     </style>
 
 <audio id="pomo-bg-music" loop>
