@@ -1523,20 +1523,16 @@ CBSE CORE is where discipline meets enjoyment. Join us and stop prepping alone.
 
     <script>
         function showSection(id) {
-            // Hide all sections
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Show target section
             document.getElementById(id).classList.add('active');
             
-            // Update Nav Links
             document.querySelectorAll('.nav-links li a').forEach(link => {
                 link.classList.remove('active');
             });
             event.currentTarget.classList.add('active');
             
-            // Scroll to top
             window.scrollTo(0, 0);
         }
     </script>
@@ -1548,7 +1544,6 @@ async function updateServerStats() {
     const totalCountSpan = document.getElementById('total-count');
     const vcListDiv = document.getElementById('vc-user-list');
 
-    // 1. Fetch Total Members (Independent Fetch)
     fetch(`https://api.discordcodes.com/v1/server/${widgetID}`)
         .then(res => res.json())
         .then(data => {
@@ -1558,7 +1553,6 @@ async function updateServerStats() {
         })
         .catch(() => console.log("Total API Sleepy..."));
 
-    // 2. Fetch Widget Data (VC + Online)
     try {
         const response = await fetch(`https://discord.com/api/guilds/${widgetID}/widget.json`);
         const data = await response.json();
@@ -1594,18 +1588,15 @@ async function updateServerStats() {
 }
     
 function showSection(sectionId) {
-    // Hide ALL sections (both page-section and content-section)
     document.querySelectorAll('.page-section, section').forEach(sec => {
         sec.style.display = 'none';
     });
 
-    // Show the target section
     const target = document.getElementById(sectionId);
     if (target) {
         target.style.display = 'block';
     }
 
-    // Update Nav Active State
     document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
     if (event && event.currentTarget) { event.currentTarget.classList.add('active'); }
 }
@@ -1616,7 +1607,7 @@ setInterval(updateServerStats, 30000);
 
 <script>
 let timer;
-let timeLeft = 1500; // Default 25 mins
+let timeLeft = 1500; 
 let isRunning = false;
 let currentMode = 'focus';
 
@@ -1629,16 +1620,14 @@ function updateDisplay() {
 
 function toggleTimer() {
     const startBtn = document.getElementById('start-btn');
-    const alarmSound = document.getElementById('pomo-bg-music'); // Using your minecraft.mp3 as the alarm
+    const alarmSound = document.getElementById('pomo-bg-music'); 
     
     if (isRunning) {
-        // --- PAUSE STATE ---
         clearInterval(timer);
         startBtn.innerText = 'START';
         isRunning = false;
     } else {
-        // --- START STATE ---
-        clearInterval(timer); // Safety clear
+        clearInterval(timer); 
 
         const m = parseInt(document.getElementById('minutes').innerText) || 0;
         const s = parseInt(document.getElementById('seconds').innerText) || 0;
@@ -1660,17 +1649,15 @@ function toggleTimer() {
                 isRunning = false;
                 startBtn.innerText = 'START';
                 
-                // --- THE ALARM TRIGGERS HERE ONLY ---
-                alarmSound.volume = 0.5; // Set to 50% volume so it's clear
+                alarmSound.volume = 0.5; 
                 alarmSound.currentTime = 0; 
                 alarmSound.play().catch(e => console.log("Audio play failed: ", e));
                 
-                // Visual feedback (Optional: Makes the timer glow red/green)
                 document.querySelector('.pomo-container').style.borderColor = "var(--accent-red)";
                 
                 setTimeout(() => {
                     alert("🔔 Time's up! Achievement Unlocked.");
-                    alarmSound.pause(); // Stops the sound after you click OK
+                    alarmSound.pause();
                 }, 500);
             }
         }, 1000);
@@ -1683,7 +1670,6 @@ function setMode(mode, mins, btn) {
     currentMode = mode;
     timeLeft = mins * 60;
     
-    // UI Updates
     document.getElementById('start-btn').innerText = 'START';
     document.querySelectorAll('.pomo-nav-item').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -1698,7 +1684,6 @@ function resetTimer() {
     document.getElementById('pomo-bg-music').currentTime = 0; 
     document.getElementById('start-btn').innerText = 'START';
     
-    // Reset based on mode
     if(currentMode === 'focus') timeLeft = 1500;
     else if(currentMode === 'short') timeLeft = 300;
     else timeLeft = 900;
@@ -1709,7 +1694,6 @@ function resetTimer() {
 </script>
 
 <script>
-// 1. Function to handle the Loading Bar
 function startLoading() {
     const fill = document.querySelector('.progress-fill');
     const intro = document.getElementById('intro-overlay'); 
@@ -1719,6 +1703,7 @@ function startLoading() {
         if (width >= 100) {
             clearInterval(interval);
             
+            // 1. Add a fade-out class or style
             intro.style.transition = "opacity 1s ease-out, visibility 1s";
             intro.style.opacity = "0";
             intro.style.visibility = "hidden";
@@ -1728,12 +1713,11 @@ function startLoading() {
             }, 1000);
 
         } else {
-            // Adjust speed here: Higher number = faster load
             width += Math.random() * 1.5; 
             if(width > 100) width = 100;
             fill.style.width = width + '%';
         }
-    }, 40); 
+    }, 40);
 }
 
 function spawnDriftingComet() {
@@ -1741,6 +1725,7 @@ function spawnDriftingComet() {
     const comet = document.createElement('div');
     comet.className = 'comet';
     
+    // Start from various points on the right/top to drift left/down
     const startY = Math.random() * window.innerHeight;
     const startX = window.innerWidth + 100;
     
@@ -1754,13 +1739,13 @@ function spawnDriftingComet() {
         { transform: 'translateX(-400px) translateY(100px) rotate(-15deg)', opacity: 1, offset: 0.2 },
         { transform: 'translateX(-1500px) translateY(400px) rotate(-15deg)', opacity: 0 }
     ], {
-        duration: Math.random() * 1000 + 1000, // Fast zoom
+        duration: Math.random() * 1000 + 1000, 
         easing: 'ease-in'
     }).onfinish = () => comet.remove();
 }
 
 startLoading();
-setInterval(spawnDriftingComet, 150);
+setInterval(spawnDriftingComet, 150); 
 </script>
     
 <script>
