@@ -643,15 +643,16 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    /* Edge fade effect */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .slider {
     display: flex;
-    gap: 30px; 
-    width: max-content; 
-    animation: scroll-infinite 30s linear infinite; 
+    gap: 20px;
+    width: max-content;
+    animation: infinite-scroll 20s linear infinite;
 }
 
 .pfp {
@@ -666,14 +667,9 @@
     transform: scale(1.1);
     filter: grayscale(0%);
 }
-
-@keyframes scroll-infinite {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+@keyframes infinite-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Jumps back to start seamlessly */
 }
 .section-divider {
     text-align: center;
@@ -1572,6 +1568,12 @@ function resetTimer() {
     updateDisplay();
 }
 
+</script>
+
+<script>
+  const slider = document.getElementById('member-slider');
+  // This duplicates the images inside the slider automatically
+  slider.innerHTML += slider.innerHTML;
 </script>
     
 </body>
