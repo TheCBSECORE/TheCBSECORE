@@ -625,6 +625,97 @@
     /* Logo Outer Glow */
     box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
     filter: brightness(1.2);
+}    
+.trusted-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.trusted-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05); /* Adjust based on your theme */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 30px;
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.trusted-text {
+    font-family: 'Inter', sans-serif; /* Or your server's chosen font */
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888;
+    white-space: nowrap;
+    margin-right: 40px;
+    letter-spacing: 1px;
+}
+
+.slider-wrapper {
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    /* This creates the fade effect at the ends */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.slider {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: slide 20s linear infinite;
+}
+
+.pfp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes pfp a circle */
+    object-fit: cover;
+    filter: grayscale(20%); /* Optional: fits a cleaner UI theme */
+    transition: transform 0.3s ease;
+}
+
+.pfp:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+/* Animation for the infinite loop */
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.section-divider {
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+.divider-text {
+    color: #555; /* Subtle gray */
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+.divider-line {
+    width: 50px;
+    height: 2px;
+    background: #FFD700; /* Match your star icon color */
+    margin: 0 auto;
+}
+.trusted-container {
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(10px); /* Blurs the background behind it */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-top: 50px; /* Pushes it away from the reviews */
 }        
 
 
@@ -862,6 +953,30 @@ CBSE CORE is where discipline meets enjoyment. Join us and stop prepping alone.
 
     </div>
 </div>    
+
+<div class="section-divider">
+    <p class="divider-text">And growing every day...</p>
+    <div class="divider-line"></div>
+</div>
+
+    <div class="trusted-container">
+        <span class="trusted-text">TRUSTED BY 400+ MEMBERS</span>
+        
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img src="https://images-ext-1.discordapp.net/external/7sBs1q84frrU3Cz1XF3zOgi-hZg06Ff58TS0mISZK04/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1394245880550264875/c571e3e2670b00f41e8d3432e3536653.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/Sb4RRDatlEobHDEUc7YoVw4GVQOHaWSuo3IznRCW4Kw/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1283414624095436832/ce869a315a98e80c9df23ccf72239a8d.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/tlNMVXg-lTwRVoDEZiUK8tionkTPEAKJrjksJuh2SDc/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1234948643879129209/9c4bc6aee23af367987b3dc466cc3b23.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/Hlu2JWbAXQuxBagM97asfcOo-lTtrVhMnrg-3lQLiOw/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1417461806980403241/b34e54113085c5655f4b657b9f43abb7.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/oBUQY59JvBMOow45-gF2GaJsJ4IWk50cMzSqYRiMflU/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1246788596678000673/974bbab70a275b0494d35469de7ce5fc.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://cdn.discordapp.com/avatars/1136615192977997825/e547f3fb86a771b33d76e187250dd06f.png?size=1024" alt="Member" class="pfp">
+                <img src="https://cdn.discordapp.com/avatars/1450135138712420476/a34b77222b08562f6de5fd4b2550bbd4.png?size=1024" alt="Member" class="pfp">
+                <img src="https://cdn.discordapp.com/avatars/1310908087565160490/1b747f30d5b62c14c58ce2942459e1bc.png?size=1024" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/dN7iwOKBafq3vzOTaHwqMqDSbeTe0ObStBI6OvsOTNg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1329169944616767518/407406164953fb28a1bd6a4d5df6384f.png?format=webp&quality=lossless" alt="Member" class="pfp">
+                <img src="https://images-ext-1.discordapp.net/external/rlAl-yLe8qX4-mZSktf4147pSTsqntXe8FozCfyzHno/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1450848984087396372/c242003868d46cee84ef33d4be50c88d.png?format=webp&quality=lossless" alt="Member" class="pfp">
+            </div>
+        </div>
+    </div>
     
 </section>
 
