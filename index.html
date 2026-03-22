@@ -640,27 +640,26 @@
 }
 
 .slider-wrapper {
-    position: relative;
-    flex-grow: 1;
+    width: 100%;
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .slider {
     display: flex;
-    gap: 30px;
-    width: max-content;
-    animation: slide 20s linear infinite;
+    gap: 30px; 
+    width: max-content; 
+    animation: scroll-infinite 30s linear infinite; 
 }
 
 .pfp {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     object-fit: cover;
-    filter: grayscale(20%); 
-    transition: transform 0.3s ease;
+    flex-shrink: 0; 
 }
 
 .pfp:hover {
@@ -668,11 +667,11 @@
     filter: grayscale(0%);
 }
 
-@keyframes slide {
-    from {
+@keyframes scroll-infinite {
+    0% {
         transform: translateX(0);
     }
-    to {
+    100% {
         transform: translateX(-50%);
     }
 }
