@@ -941,6 +941,170 @@
     color: #fff;
     transform: translateX(5px);
 }        
+/* ==========================================================================
+           NEW SIDEBAR UPDATES WIDGET DESIGN 
+           ========================================================================== */
+        .updates-sidebar {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 260px;
+            max-height: 400px;
+            background: rgba(22, 26, 33, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .updates-header {
+            padding: 12px 16px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--white);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .updates-header .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-red);
+            animation: pulse-glow-dot 2s infinite;
+        }
+
+        @keyframes pulse-glow-dot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(230, 57, 70, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+        }
+
+        .updates-scroll-zone {
+            overflow-y: auto;
+            padding: 10px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Custom subtle scrollbar for inside the widget */
+        .updates-scroll-zone::-webkit-scrollbar {
+            width: 4px;
+        }
+        .updates-scroll-zone::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .updates-scroll-zone::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .updates-scroll-zone::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue);
+        }
+
+        .update-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .update-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--accent-blue);
+        }
+
+        /* Latest update highlight features styled separately */
+        .update-item.latest {
+            border-left-color: var(--accent-red);
+            background: rgba(230, 57, 70, 0.03);
+        }
+        .update-item.latest:hover {
+            background: rgba(230, 57, 70, 0.06);
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+
+        .update-tag {
+            text-transform: uppercase;
+            font-weight: 800;
+            font-family: monospace;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+        }
+        .update-item.latest .update-tag {
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--accent-red);
+        }
+        .update-item:not(.latest) .update-tag {
+            background: rgba(0, 119, 182, 0.15);
+            color: #00b4d8;
+        }
+
+        .update-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .update-details {
+            max-height: 0;
+            overflow: hidden;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), margin-top 0.3s ease;
+        }
+
+        /* Expanded State class added via JavaScript */
+        .update-item.expanded .update-details {
+            max-height: 1000px; /* Large enough threshold to auto-expand contents cleanly */
+            margin-top: 8px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-top: 8px;
+        }
+
+        /* Responsive handling to stack below content on tablets/phones safely */
+        @media (max-width: 1400px) {
+            .updates-sidebar {
+                position: static;
+                transform: none;
+                width: 100%;
+                max-height: none;
+                margin-top: 30px;
+                background: var(--card-bg);
+            }
+            .updates-scroll-zone {
+                max-height: 350px;
+            }
+        }
     </style>
 
 <audio id="pomo-bg-music" loop>
@@ -1017,6 +1181,64 @@
 
         </div>
 </section>
+
+<section id="main" class="page-section active">
+    <!-- NEW SIDEBAR WIDGET COMPONENT -->
+    <aside class="updates-sidebar" id="sidebar-updates">
+        <div class="updates-header">
+            <div class="pulse-dot"></div>
+            <span>LATEST UPDATES</span>
+        </div>
+        <div class="updates-scroll-zone">
+            
+            <!-- 1. EDIT MANUALLY HERE: ALWAYS KEEP LATEST UPDATE AT THE TOP -->
+            <div class="update-item latest" onclick="toggleUpdate(this)">
+                <div class="update-meta">
+                    <span class="update-tag">NEW</span>
+                    <span class="update-date">May 20, 2026</span>
+                </div>
+                <h4 class="update-title">Website Redesign Live!</h4>
+                <div class="update-details">
+                    We have integrated our new modular side widget UI! Now tracking patch-notes, community announcements, and server shifts directly on our landing hub. Tap around to find hidden details.
+                </div>
+            </div>
+
+            <!-- 2. PAST LOGS DOWN BELOW -->
+            <div class="update-item" onclick="toggleUpdate(this)">
+                <div class="update-meta">
+                    <span class="update-tag">Bot</span>
+                    <span class="update-date">May 15, 2026</span>
+                </div>
+                <h4 class="update-title">Custom Bot Engine v2.4</h4>
+                <div class="update-details">
+                    Patched cross-server voice logging systems. Handlers for automated community moderation routines have been fully optimized to slash memory usage by 40%.
+                </div>
+            </div>
+
+            <div class="update-item" onclick="toggleUpdate(this)">
+                <div class="update-meta">
+                    <span class="update-tag">Event</span>
+                    <span class="update-date">Apr 28, 2026</span>
+                </div>
+                <h4 class="update-title">Resource Sweep Complete</h4>
+                <div class="update-details">
+                    Added comprehensive PYQs and handwritten revision guides across Class 10/12 Science & Mathematics sections. Check the server guide to map your tags.
+                </div>
+            </div>
+
+            <div class="update-item" onclick="toggleUpdate(this)">
+                <div class="update-meta">
+                    <span class="update-tag">Core</span>
+                    <span class="update-date">Dec 15, 2025</span>
+                </div>
+                <h4 class="update-title">The Foundation Launch</h4>
+                <div class="update-details">
+                    Official deployment of THE CBSE CORE framework. Established structural roots for premium Indian student collectives. Welcome everyone!
+                </div>
+            </div>
+
+        </div>
+    </aside>
     
 <section id="main" class="page-section active">
     <div class="server-banner"></div>
@@ -1160,7 +1382,7 @@ CBSE CORE is where discipline meets enjoyment. Join us and stop prepping alone.
     <div class="reviews-track">
         
         <div class="review-card">
-            <img src="hhttps://cdn.discordapp.com/avatars/1256242087414993026/65465e5de8505b1140aec2541d4934cf.png?size=1024" class="review-pfp" alt="User">
+            <img src="https://cdn.discordapp.com/avatars/1256242087414993026/65465e5de8505b1140aec2541d4934cf.png?size=1024" class="review-pfp" alt="User">
             <span class="review-name">Lester07</span>
             <div class="review-stars">★★★★★</div>
             <p class="review-text">"10/10 must visit, @NotLaksh_ is so handsome and friendly and nonchalant and all the resources are so well curated. Did I forget to mention how hot @NotLaksh_ is???? 😋"</p>
@@ -1240,6 +1462,9 @@ CBSE CORE is where discipline meets enjoyment. Join us and stop prepping alone.
     </div>
     
 </section>
+<div class="footer">
+    &copy; 2026 THE CBSE CORE. All rights reserved.
+</div>    
     
 <section id="pomodoro" class="page-section" style="display: none; padding-top: 100px;">
     <div class="pomo-wrapper">
@@ -1932,6 +2157,68 @@ function spawnDriftingComet() {
 startLoading();
 setInterval(spawnDriftingComet, 150); 
 </script>
+
+<!-- JAVASCRIPT LOGIC UPDATES -->
+<script>
+    // System to handle section swapping and auto-toggling widget display states
+    function showSection(sectionId) {
+        // Hide all sections first
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(sec => sec.classList.remove('active'));
+        
+        // Remove active markers from menu targets
+        const navLinks = document.querySelectorAll('.nav-links li a');
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        // Target new segment activation
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Keep update sidebar visibility limited STRICTLY to core main dashboard tab
+        const sidebar = document.getElementById('sidebar-updates');
+        if (sidebar) {
+            if (sectionId === 'main') {
+                sidebar.style.display = 'flex';
+                // Trigger transition delay anchor
+                setTimeout(() => sidebar.style.opacity = '1', 50);
+            } else {
+                sidebar.style.opacity = '0';
+                sidebar.style.display = 'none';
+            }
+        }
+
+        // Highlight chosen nav link element mapping
+        const activeNav = document.querySelector(`.nav-links li a[onclick="showSection('${sectionId}')"]`);
+        if (activeNav) activeNav.classList.add('active');
+    }
+
+    // Expanding and closing items layout adjustments on click patterns
+    function toggleUpdate(element) {
+        // Close siblings if you only want ONE container open at a time (Optional standard behavior)
+        const items = document.querySelectorAll('.update-item');
+        items.forEach(item => {
+            if (item !== element) item.classList.remove('expanded');
+        });
+
+        // Toggle focus point
+        element.classList.toggle('expanded');
+    }
+
+    // Simple initialization check for loading cycles
+    window.addEventListener('DOMContentLoaded', () => {
+        const overlay = document.getElementById('intro-overlay');
+        if (overlay) {
+            // Mimic your intro script timing structure to fade away gracefully
+            setTimeout(() => {
+                overlay.style.transition = 'opacity 0.6s ease';
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 600);
+            }, 2500);
+        }
+    });
+</script>    
     
 <script>
   const slider = document.getElementById('member-slider');
